@@ -1,0 +1,1 @@
+const Hi = "Hello";
