@@ -1,14 +1,29 @@
 const express = require("express");
+const {
+  getUserFromDb,
+  createUser,
+  userLogout,
+} = require("../controllers/auth");
 const router = express.Router();
 
-module.exports = () => {
-  router.get("/", (req, res) => {
-    res.render("index");
-  });
+//get login page
+router.get("/login", (req, res) => {
+  res.render("index");
+  return;
+});
 
-  router.get("/sign-up", (req, res) => {
-    res.render("sign-up");
-  });
+//get sign-up page
+router.get("/signUp", (req, res) => {
+  res.render("sign-up");
+  return;
+});
 
-  return router;
-};
+// submitt login info
+router.post("/login", getUserFromDb);
+
+//Adding new user to db
+router.post("/sign-up", createUser);
+
+//log out
+//router.post("/logout", userLogout);
+module.exports = router;
