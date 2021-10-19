@@ -10,14 +10,14 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM widgets`;
-    console.log(query);
+    let query = `SELECT url FROM resources`;
     db.query(query)
       .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
+        const resources = data.rows;
+        res.json({ resources });
       })
       .catch(err => {
+        console.log("Error on", err);
         res
           .status(500)
           .json({ error: err.message });
