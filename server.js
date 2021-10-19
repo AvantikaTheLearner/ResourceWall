@@ -37,8 +37,14 @@ app.use(
   })
 );
 
-/** Routes */
-app.use("/", authRoutes);
+// Separated Routes for each Resource
+// Note: Feel free to replace the example routes below with your own
+const homeRoutes = require("./routes/home-page");
+
+// Mount all resource routes
+// Note: Feel free to replace the example routes below with your own
+app.use("/", authRoutes());
+app.use("/home", homeRoutes(db));
 app.use("/api/users", usersRoutes(db));
 
 app.listen(PORT, () => {
