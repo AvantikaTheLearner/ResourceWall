@@ -6,6 +6,14 @@ module.exports = () => {
     res.render("index");
   });
 
+  /*router.get("/home", (req, res) => {
+    res.render("index");
+  });*/
+
+  router.get("/login", (req, res) => {
+    res.render("login");
+  });
+
   router.get("/sign-up", (req, res) => {
     res.render("sign-up");
   });
