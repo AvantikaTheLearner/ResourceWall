@@ -6,6 +6,7 @@ const session = require("express-session");
 const db = require("./lib/db.js");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const resourcesRoutes = require("./routes/resource-router");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 require("dotenv").config();
@@ -39,7 +40,7 @@ app.use(
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const resourceRoutes = require("./routes/resources");
+
 const homeRoutes = require("./routes/home-page");
 
 // Mount all resource routes
@@ -47,8 +48,7 @@ const homeRoutes = require("./routes/home-page");
 app.use("/", authRoutes);
 app.use("/home", homeRoutes(db));
 app.use("/api/users", usersRoutes(db));
-
-app.use("/resources", resourceRoutes());
+app.use("/resources", resourcesRoutes());
 
 
 app.listen(PORT, () => {
