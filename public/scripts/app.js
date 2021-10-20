@@ -5,7 +5,7 @@ console.log("loaded");
   //this function submits an ajax request to load all the tweets from Json data
   const loadResources = () => {
     $.ajax({
-      url: "/home",
+      url: "/resources",
       method: "GET",
       dataType: "json",
       success: (data) => {
@@ -15,7 +15,7 @@ console.log("loaded");
 
       },
       error: (err,status, e) => {
-        console.log(`there was an error: ${err} ${status} ${e}`);
+        //console.log(`there was an error: ${err} ${status} ${e}`);
       }
     });
   };
@@ -35,12 +35,14 @@ console.log("loaded");
 
   //this function creates a new tweet
   const createResourceElement = function(resourceObj) {
-    const $resourceObj = $(`<div class="imageClass" style= "border: 1px solid black">
+    const $resourceObj = $(`<div class="imageClass" style= "border: 1px solid black ; padding: 20px">
           <a href="${resourceObj.url}"><img src="https://media.istockphoto.com/photos/programming-code-abstract-technology-background-of-software-developer-picture-id1224500457?s=612x612" width="100" height="100">${resourceObj.url}</a>
-          <button class="submitButton" type="submit">Save</button>
+          <button class="likeButton" type="submit">Like</button>
+          <button class="rateButton" type="submit">Rate</button>
+          <button class="commentButton" type="submit">Comment</button>
         </div>`);
 
-        $(".submitButton").on("submit", function(event) {
+        $(".likeButton").on("submit", function(event) {
 
           const $editProductForm = $(`
             <form>

@@ -6,14 +6,26 @@ const {
 } = require("../controllers/auth");
 const router = express.Router();
 
-//get login page
-router.get("/login", (req, res) => {
+//get index page
+router.get("/", (req, res) => {
   res.render("index");
   return;
 });
 
+//get home page
+router.get("/home", (req, res) => {
+  res.render("index");
+  return;
+});
+
+//get login page
+router.get("/login", (req, res) => {
+  res.render("login");
+  return;
+});
+
 //get sign-up page
-router.get("/signUp", (req, res) => {
+router.get("/sign-up", (req, res) => {
   res.render("sign-up");
   return;
 });
