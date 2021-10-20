@@ -1,20 +1,24 @@
-const getUserEmailAndPassword = `
-SELECT *
-FROM users
-WHERE $1 =email
-AND $2 = password`;
-
 const getUserEmail = `
 SELECT *
 FROM users
-WHERE $1 =email`;
+WHERE email = $1`;
+
+const getUserId = `
+SELECT *
+FROM users
+WHERE  id = $1`;
 
 const addNewUser = `INSERT INTO
 users (name, email, password)
-VALUES ($1, $2, $3);`;
+VALUES ($1, $2, $3)
+RETURNING id;
+`;
+
+const modifyUserProfile = "UPDATE users SET name =$1, email =$2, password=$3 ";
 
 module.exports = {
-  getUserEmailAndPassword,
   getUserEmail,
   addNewUser,
+  getUserId,
+  modifyUserProfile,
 };

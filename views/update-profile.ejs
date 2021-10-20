@@ -7,7 +7,7 @@
 
 <body>
   <!-- header -->
-  <header id="header-sign-up">
+  <header id="header-update-profile">
     <nav class="navbar" id="Pinterest-icon">
       <a class="navbar-brand" href="#">
         <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -16,24 +16,27 @@
     </nav>
   </header>
   <!-- main -->
-  <main class="auth-page">
+  <main>
     <div>
-      <p class="font-weight-bold" id="sign-up"> CRATE YOUR ACCOUNT </p>
+      <p class="font-weight-bold" id="update-profile"> You Can Update Your Profile!! </p>
     </div>
-    <div id="sign-up-form" class="row justify-content-center align-items-center h-100">
+    <div id="update-profile-form" class="row justify-content-center align-items-center h-100">
       <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-12">
-        <form method="post" action="/sign-up">
+        <form method="post" action="/update-profile">
           <div class="form-group">
             <label for="user-name">Name:</label>
-            <input type="text" required class="form-control" id="user-name" aria-describedby="nameHelp" placeholder="Enter your name" autocomplete="name">
+            <input type="text" required class="form-control" id="user-name" aria-describedby="nameHelp"
+              placeholder= <%= name %> autocomplete="name">
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" required class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email" autocomplete="email">
+            <input type="email" required class="form-control" id="email" aria-describedby="emailHelp"
+              placeholder= <%= email %> autocomplete="email">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" required class="form-control" id="password" placeholder="Password" autocomplete="current-password">
+            <input type="password" required class="form-control" id="password" placeholder="Password"
+              autocomplete="current-password">
           </div>
           <div class="auth-form-actions">
             <button type="submit" class="btn btn-primary">Submit</button>

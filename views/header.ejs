@@ -1,19 +1,48 @@
 <!-- Image and text -->
-<nav class="navbar" id="Pinterest-icon">
-   <a class="navbar-brand" href="#">
-   <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-      alt="">
-   Pinterest
-   </a>
-</nav>
-<nav class="navbar" id= "search">
-   <form class="form-inline">
-      <input id="search-box" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form>
-</nav>
-<nav id="button">
-   <button type="button" class="btn btn-outline-primary" disabled>signUp</button>
-   <button type="button" class="btn btn-outline-secondary" disabled>login</button>
-   <button type="button" class="btn btn-outline-danger" disabled>logout</button>
+<nav id="header">
+  <nav class="navbar" id="Pinterest-icon">
+    <a class="navbar-brand" href="#">
+      <img
+        src="/images/logo.png"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+        alt=""
+      />
+    </a>
+  </nav>
+  <div class="collapse navbar-collapse" id="home">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/resources"> Home </a>
+    </div>
+  </div>
+  <nav class="navbar" id="search">
+    <form class="form-inline">
+      <input
+        id="search-box"
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </nav>
+  <nav id="button">
+    <%if (user){ %>
+    <form method="POST" action="/logout">
+      <input type="submit" class="btn btn-outline-danger" value="Logout" />
+    </form>
+    <% } else { %>
+    <form method="get" action="/sign-up">
+      <input type="submit" class="btn btn-outline-primary" value="sign-up" />
+    </form>
+    <form method="get" action="/login">
+      <input type="submit" class="btn btn-outline-secondary" value="login" />
+    </form>
+
+    <% } %>
+  </nav>
 </nav>
