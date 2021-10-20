@@ -16,18 +16,18 @@
          </nav>
       </header>
       <!-- main -->
-      <main>
+      <main class="auth-page">
          <div id="login-form" class="row justify-content-center align-items-center h-100">
             <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-12" >
                <form method="post" action="/login">
                   <div class="form-group">
                      <label for="email">Email:</label>
-                     <input type="email" required class="form-control" id="email" aria-describedby="emailHelp"
+                     <input type="email" name="email" required class="form-control" id="email" aria-describedby="emailHelp"
                         placeholder="Enter your email">
                   </div>
                   <div class="form-group">
                      <label for="password">Password</label>
-                     <input type="password" required class="form-control" id="password" placeholder="Password">
+                     <input type="password" name="password" required class="form-control" id="password" placeholder="Password">
                   </div>
                   <div id="auth-form-actions">
                      <button type="submit" class="btn btn-primary">Submit</button>

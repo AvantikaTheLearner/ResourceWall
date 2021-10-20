@@ -1,29 +1,39 @@
 const express = require("express");
-const {
-  getUserFromDb,
-  createUser,
-  userLogout,
-} = require("../controllers/auth");
+const { loginUser, createUser, updateProfile } = require("../controllers/auth");
 const router = express.Router();
 
 //get login page
 router.get("/login", (req, res) => {
-  res.render("index");
+  res.render("login");
   return;
 });
 
 //get sign-up page
-router.get("/signUp", (req, res) => {
+router.get("/sign-up", (req, res) => {
   res.render("sign-up");
   return;
 });
 
+// get update-profile page
+router.get("/update-profile", (req, res) => {
+  const { name, email } = req.body;
+  const templateVars = {
+    name,
+    email,
+  };
+  res.status(200).render("update-profile", templateVars);
+});
+
 // submitt login info
-router.post("/login", getUserFromDb);
+router.post("/login", loginUser);
 
 //Adding new user to db
 router.post("/sign-up", createUser);
 
-//log out
-//router.post("/logout", userLogout);
+router.post("/update-profile", updateProfile);
+
+router.post ("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/login");
+});
 module.exports = router;
