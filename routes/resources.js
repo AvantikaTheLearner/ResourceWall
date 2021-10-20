@@ -3,12 +3,13 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", { user: req.session.currentUser });
   });
 
-  router.get("/resources", (req, res) => {
-    res.render("resource-wall");
-  });
+  // router.get("/resources", (req, res) => {
+  //   //const templateVars = { user: req.session.id };
+  //   res.render("resource-wall" /*templateVars*/);
+  // });
 
   return router;
 };
