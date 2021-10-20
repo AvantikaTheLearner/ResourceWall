@@ -6,11 +6,11 @@ module.exports = (db) => {
     res.render("index");
   });*/
 
-  router.get("/resources", (req, res) => {
-    res.render("resource-wall");
-  });
-
   /*router.get("/resources", (req, res) => {
+    res.render("resource-wall");
+  });*/
+
+  router.get("/resources", (req, res) => {
     let query = `SELECT url FROM resources`;
     db.query(query)
       .then(data => {
@@ -23,7 +23,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  });*/
+  });
 
   return router;
 };

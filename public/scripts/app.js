@@ -5,7 +5,7 @@ console.log("loaded");
   //this function submits an ajax request to load all the tweets from Json data
   const loadResources = () => {
     $.ajax({
-      url: "/resources",
+      url: "/resources/resources",
       method: "GET",
       dataType: "json",
       success: (data) => {
@@ -26,7 +26,7 @@ console.log("loaded");
   const renderResources = function(resources) {
 
     const $resourcesContainer = $('#resources-container');
-    $resourcesContainer.empty();
+    //$resourcesContainer.empty();
     for (const resource of resources) {
       const $resource = createResourceElement(resource);
       $resourcesContainer.append($resource);// this is used to show the most recent tweet on top
