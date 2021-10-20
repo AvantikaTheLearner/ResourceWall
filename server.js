@@ -18,8 +18,11 @@ const app = express();
 
 /** Middlewares */
 app.use(morgan("dev"));
+
+// using ejs templare.
 app.set("view engine", "ejs");
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   "/styles",
   sassMiddleware({
@@ -34,11 +37,10 @@ app.use(
     secret: "ResourceWallMidTermProject",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false, maxAge: null, httpOnly: true },
+    cookie: { secure: false, maxAge: 5000, httpOnly: true },
   })
 );
 
-// Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const resourceRoutes = require("./routes/resources");
 
@@ -49,6 +51,8 @@ app.use("/api/users", usersRoutes(db));
 app.use("/resources", resourceRoutes(db));
 app.use("/new_resource", newResourceRoutes(db));
 
+//ToDO
+//app.use("/creat-new-resource", newresourceroute());
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

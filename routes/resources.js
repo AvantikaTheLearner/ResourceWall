@@ -1,14 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
-  /*router.get("/", (req, res) => {
-    res.render("index");
-  });*/
 
-  /*router.get("/resources", (req, res) => {
-    res.render("resource-wall");
-  });*/
+module.exports = (db) => {
+  router.get("/", (req, res) => {
+    res.render("index", { user: req.session.currentUser });
+  });
 
   router.get("/resources", (req, res) => {
     let query = `SELECT url FROM resources`;

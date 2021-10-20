@@ -1,6 +1,6 @@
 // Client facing scripts here
-$(document).ready(function() {
-console.log("loaded");
+$(document).ready(function () {
+  console.log("loaded");
 
   //this function submits an ajax request to load all the tweets from Json data
   const loadResources = () => {
@@ -11,12 +11,10 @@ console.log("loaded");
       success: (data) => {
         console.log("Data", data);
         renderResources(data.resources);
-
-
       },
-      error: (err,status, e) => {
-        //console.log(`there was an error: ${err} ${status} ${e}`);
-      }
+      error: (err, status, e) => {
+        console.log(`there was an error: ${err} ${status} ${e}`);
+      },
     });
   };
 
@@ -29,7 +27,7 @@ console.log("loaded");
     //$resourcesContainer.empty();
     for (const resource of resources) {
       const $resource = createResourceElement(resource);
-      $resourcesContainer.append($resource);// this is used to show the most recent tweet on top
+      $resourcesContainer.append($resource); // this is used to show the most recent tweet on top
     }
   };
 
@@ -57,14 +55,11 @@ console.log("loaded");
             </form>
           `);
 
-          $resourceObj.append($editProductForm);
-        });
+      $resourceObj.append($editProductForm);
+    });
 
     return $resourceObj;
   };
-
-
-
 
   /*$("#new-tweet-form").on("submit", function(event) {
     event.preventDefault();
@@ -77,5 +72,4 @@ console.log("loaded");
         $('.counter').text(140);
       });
   });*/
-
 });
