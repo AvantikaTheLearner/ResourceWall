@@ -6,7 +6,6 @@ const session = require("express-session");
 const db = require("./lib/db.js");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-const newResourceRoutes = require("./routes/add_resource");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 require("dotenv").config();
@@ -49,7 +48,6 @@ const resourceRoutes = require("./routes/resources");
 app.use("/", authRoutes);
 app.use("/api/users", usersRoutes(db));
 app.use("/resources", resourceRoutes(db));
-app.use("/new_resource", newResourceRoutes(db));
 
 //ToDO
 //app.use("/creat-new-resource", newresourceroute());

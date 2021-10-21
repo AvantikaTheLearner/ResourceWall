@@ -4,7 +4,8 @@ const router = express.Router();
 
 //get index page
 router.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {user: req.session.currentUser};
+  res.render("index", templateVars);
   return;
 });
 

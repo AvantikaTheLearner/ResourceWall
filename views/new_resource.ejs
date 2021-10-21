@@ -7,17 +7,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Registration</title>
+    <title>Add New Resource</title>
   </head>
 
   <body>
 
-    <%#- include('partials/_header') %>
+    <%#- include('header') %>
 
     <main style="margin: 1em;">
       <h3>Add New Resource</h3>
-      <form class="form-inline" action="/addResource" method="POST">
-        <div class="form-group mb-2">
+      <form class="form-inline" action="/resources/new_resource" method="POST">
+        <div>
           <label for="url">URL :</label>
           <input class="form-control" type="url" name="url" style="width: 300px; margin: 1em">
           <label for="title">Title :</label>
