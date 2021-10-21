@@ -5,7 +5,7 @@ const db = require("../lib/db.js");
 const checkAuth = async (req, res, next) => {
   const userId = req.session.userId;
   if (!userId) {
-    return res.redirect("login");
+    return res.redirect("/login");
   }
 
   const userResualt = await db.query(getUserById, [userId]);

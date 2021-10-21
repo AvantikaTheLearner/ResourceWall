@@ -40,6 +40,7 @@ const loginUser = async (req, res) => {
 
 /*Add new user for db*/
 const createUser = async (req, res) => {
+  console.log("req-body", req.body);
   const { name, email, password } = req.body;
   // check all required fields
   if (!name || !email || !password) {
