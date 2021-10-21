@@ -3,7 +3,7 @@ SELECT *
 FROM users
 WHERE email = $1`;
 
-const getUserId = `
+const getUserById = `
 SELECT *
 FROM users
 WHERE  id = $1`;
@@ -19,6 +19,6 @@ const modifyUserProfile = "UPDATE users SET name =$1, email =$2, password=$3 ";
 module.exports = {
   getUserEmail,
   addNewUser,
-  getUserId,
+  getUserById,
   modifyUserProfile,
 };

@@ -6,12 +6,15 @@ const session = require("express-session");
 const db = require("./lib/db.js");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+//const bodyParser = require("body-parser");
 require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 /** Middlewares */
 app.use(morgan("dev"));
@@ -32,9 +35,9 @@ app.use(express.static("public"));
 app.use(
   session({
     secret: "ResourceWallMidTermProject",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false, maxAge: 5000, httpOnly: true },
+    cookie: { secure: false, maxAge: null, httpOnly: true },
   })
 );
 
@@ -46,7 +49,7 @@ const homeRoutes = require("./routes/home-page");
 // Note: Feel free to replace the example routes below with your own
 app.use("/", authRoutes);
 app.use("/home", homeRoutes(db));
-app.use("/api/users", usersRoutes(db));
+//app.use("/api/users", usersRoutes(db));
 
 app.use("/resources", resourceRoutes());
 
