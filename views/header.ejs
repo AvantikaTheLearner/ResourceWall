@@ -1,19 +1,51 @@
 <!-- Image and text -->
-<nav class="navbar" id="Pinterest-icon">
-   <a class="navbar-brand" href="#">
-   <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
-      alt="">
-   Pinterest
-   </a>
-</nav>
-<nav class="navbar" id= "search">
-   <form class="form-inline">
-      <input id="search-box" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form>
-</nav>
-<nav id="button">
-   <button type="button" class="btn btn-outline-primary" disabled>signUp</button>
-   <button type="button" class="btn btn-outline-secondary" disabled>login</button>
-   <button type="button" class="btn btn-outline-danger" disabled>logout</button>
+<nav id="header">
+  <nav class="navbar" id="Pinterest-icon">
+      <img
+        src="/images/logo.png"
+        width="30"
+        height="30"
+        class="d-inline-block align-top"
+        alt=""
+      />
+    </a>
+  </nav>
+  <nav id="home">
+    <a class="nav-link p-2 active" aria-current="page" href="/resources"> Home </a>
+  </nav>
+
+  <nav class="navbar" id="search">
+    <form class="form-inline" action="/search" method="POST">
+      <input
+        id="search-box"
+        class="form-control mr-sm-2"
+        type="search"
+        name="search"
+        placeholder="Search by Title"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </nav>
+  <div id="update-logout">
+  <nav id="auth-button">
+    <%if (userId){ %>
+    <form method="POST" action="/logout" id="logout">
+      <input type="submit" class="btn btn-outline-danger" value="Logout" />
+    </form>
+    <% } else { %>
+    <form method="get" action="/sign-up">
+      <input type="submit" class="btn btn-outline-primary" value="sign-up" />
+    </form>
+    <form method="get" action="/login">
+      <input type="submit" class="btn btn-outline-secondary" value="login" />
+    </form>
+    <% } %>
+  </nav>
+  <nav id="update-button">
+    <a class="nav-link p-2 active" aria-current="page" href="/update-profile"> Update </a>
+  </nav>
+  </div>
 </nav>
