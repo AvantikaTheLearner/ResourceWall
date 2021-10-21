@@ -14,7 +14,7 @@ VALUES ($1, $2, $3)
 RETURNING id;
 `;
 
-const modifyUserProfile = "UPDATE users SET name =$1, email =$2, password=$3 ";
+const modifyUserProfile = `UPDATE users SET name =$2, email =$3, password=$4  WHERE id= $1;`;
 
 module.exports = {
   getUserByEmail,

@@ -5,7 +5,7 @@ const checkAuth = require("../middlewares/check-auth");
 
 //get index page
 router.get("/", (req, res) => {
-  const templateVars = {user: req.session.currentUser};
+  const templateVars = { user: req.session.currentUser };
   res.render("index", templateVars);
   return;
 });
@@ -48,8 +48,13 @@ router.post("/sign-up", createUser);
 router.post("/update-profile", checkAuth, updateProfile);
 
 router.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/login");
+  req.session.destroy((err) => {
+    if (err) {
+      res.send("The cookie can not be removed!!");
+    }
+    req.end();
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;
