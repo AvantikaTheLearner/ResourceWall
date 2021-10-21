@@ -3,6 +3,19 @@ const { loginUser, createUser, updateProfile } = require("../controllers/auth");
 const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 
+//get index page
+router.get("/", (req, res) => {
+  const templateVars = {user: req.session.currentUser};
+  res.render("index", templateVars);
+  return;
+});
+
+//get home page
+router.get("/home", (req, res) => {
+  res.render("index");
+  return;
+});
+
 //get login page
 router.get("/login", (req, res) => {
   res.render("login");
