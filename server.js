@@ -8,6 +8,8 @@ const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const resourcesRoutes = require("./routes/resources");
 const reviewsRoutes = require("./routes/resource-router");
+const searchResources = require("./routes/search");
+const loadMyResources = require("./routes/myResource");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 require("dotenv").config();
@@ -52,6 +54,8 @@ app.use("/", authRoutes);
 app.use("/api/users", usersRoutes(db));
 app.use("/resources", resourcesRoutes(db));
 app.use("/reviews", reviewsRoutes());
+app.use("/search", searchResources(db));
+app.use("/myResources", loadMyResources(db));
 
 //ToDO
 //app.use("/creat-new-resource", newresourceroute());

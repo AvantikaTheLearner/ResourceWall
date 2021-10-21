@@ -96,5 +96,6 @@ const updateProfile = async (req, res) => {
   // if (updateProfileResults) {
   //   res.send("updating was success!");
   // }
+
 };
 module.exports = { loginUser, createUser, updateProfile };

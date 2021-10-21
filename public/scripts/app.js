@@ -1,5 +1,5 @@
 // Client facing scripts here
-$(document).ready(function () {
+$(document).ready(function() {
   console.log("loaded");
 
   //this function submits an ajax request to load all the tweets from Json data
@@ -34,7 +34,7 @@ $(document).ready(function () {
   //this function creates a new tweet
   const createResourceElement = function(resourceObj) {
     const $resourceObj = $(`<div class="imageClass" style= "border: 1px solid black ; padding: 20px">
-          <img src="https://media.istockphoto.com/photos/programming-code-abstract-technology-background-of-software-developer-picture-id1224500457?s=612x612" width="100" height="100">
+          <img src="${resourceObj.image_url}" width="100" height="100">
           <p><br/></p>
           <p><b>TITLE:</b> ${resourceObj.title}</p>
           <p><b>CATEGORY:</b> ${resourceObj.category_name}</p>
@@ -47,15 +47,4 @@ $(document).ready(function () {
     return $resourceObj;
   };
 
-  /*$("#new-tweet-form").on("submit", function(event) {
-    event.preventDefault();
-    const $form = $(this);
-    const $tweetText = $form.find("textarea");
-    const $tweetLength = $tweetText.val().trim().length;
-      const serializedData = $(this).serialize();
-      $.post("/tweets", serializedData, (response) => {
-        $("#tweet-text").val('');
-        $('.counter').text(140);
-      });
-  });*/
 });
