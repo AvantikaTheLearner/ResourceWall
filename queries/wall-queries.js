@@ -13,7 +13,7 @@ const getURL = () => {
 const getURLById = (id) => {
   return db.query('SELECT * FROM resources WHERE id = $1', [id])
     .then((response) => {
-      return response.rows[0];
+      return response.rows;
     });
 };
 
@@ -24,6 +24,12 @@ const getReviews = () => {
     });
 
 };
+
+
+const addNewComment = `INSERT INTO
+reviews (user_id, resource_id, rating, comment, hit_like)
+VALUES ($1, $2, $3)
+`;
 
 module.exports = {
   getURL,

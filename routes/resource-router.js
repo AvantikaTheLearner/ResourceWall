@@ -22,6 +22,15 @@ const resourceQueries = require("../queries/wall-queries")
         })
     });
 
+
+
+    router.post("/", (req, res) => {
+
+      let comment = req.body.text
+      res.send(comment);
+
+    });
+
     router.get("/", (req, res) => {
 
       //resourceQueries.getURL()
@@ -34,9 +43,7 @@ const resourceQueries = require("../queries/wall-queries")
     });
 
 
-
-
-    return router;
+      return router;
 
 
   };
