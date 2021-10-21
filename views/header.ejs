@@ -1,7 +1,6 @@
 <!-- Image and text -->
 <nav id="header">
   <nav class="navbar" id="Pinterest-icon">
-    <a class="navbar-brand" href="#">
       <img
         src="/images/logo.png"
         width="30"
@@ -11,11 +10,10 @@
       />
     </a>
   </nav>
-  <div class="collapse navbar-collapse" id="home">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="/resources"> Home </a>
-    </div>
-  </div>
+  <nav id="home">
+    <a class="nav-link p-2 active" aria-current="page" href="/resources"> Home </a>
+  </nav>
+
   <nav class="navbar" id="search">
     <form class="form-inline" action="/search" method="POST">
       <input
@@ -31,9 +29,10 @@
       </button>
     </form>
   </nav>
-  <nav id="button">
-    <%if (user){ %>
-    <form method="POST" action="/logout">
+  <div id="update-logout">
+  <nav id="auth-button">
+    <%if (userId){ %>
+    <form method="POST" action="/logout" id="logout">
       <input type="submit" class="btn btn-outline-danger" value="Logout" />
     </form>
     <% } else { %>
@@ -46,4 +45,8 @@
 
     <% } %>
   </nav>
+  <nav id="update-button">
+    <a class="nav-link p-2 active" aria-current="page" href="/update-profile"> Update </a>
+  </nav>
+  </div>
 </nav>
