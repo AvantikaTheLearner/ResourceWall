@@ -46,7 +46,7 @@ const addNewRating  = (user_id, resource_id, comment) => {
 
 };
 
-const addNewComment  = (user_id, resource_id, comment) => {
+/*const addNewComment  = (user_id, resource_id, comment) => {
   return db.query(`INSERT INTO
   reviews (user_id, resource_id, comment)
   VALUES ($1, $2, $3)
@@ -55,7 +55,7 @@ const addNewComment  = (user_id, resource_id, comment) => {
       return response.rows;
     });
 
-};
+};*/
 
 module.exports = {
   getURL,
