@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
+//app.use(bodyParser.urlencoded({ extended: true }));
+
 /** Middlewares */
 app.use(morgan("dev"));
 
@@ -36,9 +38,9 @@ app.use(express.static("public"));
 app.use(
   session({
     secret: "ResourceWallMidTermProject",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false, maxAge: 5000, httpOnly: true },
+    cookie: { secure: false, maxAge: null, httpOnly: true },
   })
 );
 

@@ -1,6 +1,7 @@
 const express = require("express");
 const { loginUser, createUser, updateProfile } = require("../controllers/auth");
 const router = express.Router();
+const checkAuth = require("../middlewares/check-auth");
 
 //get index page
 router.get("/", (req, res) => {
@@ -28,11 +29,12 @@ router.get("/sign-up", (req, res) => {
 });
 
 // get update-profile page
-router.get("/update-profile", (req, res) => {
-  const { name, email } = req.body;
+router.get("/update-profile", checkAuth, (req, res) => {
+  const user = req.currentUser;
   const templateVars = {
-    name,
-    email,
+    name: user.name,
+    email: user.email,
+    userId: user.id,
   };
   res.status(200).render("update-profile", templateVars);
 });
@@ -43,10 +45,11 @@ router.post("/login", loginUser);
 //Adding new user to db
 router.post("/sign-up", createUser);
 
-router.post("/update-profile", updateProfile);
+router.post("/update-profile", checkAuth, updateProfile);
 
-router.post ("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/login");
 });
+
 module.exports = router;
