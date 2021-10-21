@@ -16,12 +16,14 @@
 
     <script type="text/javascript" src="/scripts/like-button.js"></script>
 
+    <script type="text/javascript" src="/scripts/comments-section.js"></script>
+
   </head>
    <body>
      <h1>My Resources Page</h1>
 
       <main>
-
+         <!--Comment-->
         <form action="/resources/comment" method="POST">
 
           <input type="textarea" name="text">
@@ -29,6 +31,7 @@
 
         </form>
 
+         <!--Like button-->
         <button id="like-button">
           Like
           <output id="like-counter" class="counter-num">
@@ -36,7 +39,7 @@
           </output>
         </button>
 
-
+        <!--Ratings bar-->
     <div>
         <input type="radio" name="rate" value="1">
         <input type="radio" name="rate" value="2">
@@ -45,7 +48,8 @@
         <input type="radio" name="rate" value="5">
     </div>
 
-
+    <h4>Comment section</h4>
+    <section id="comments-container"> </section>
 
       </main>
 
