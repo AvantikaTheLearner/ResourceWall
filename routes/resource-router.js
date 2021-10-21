@@ -22,11 +22,26 @@ const resourceQueries = require("../queries/wall-queries")
         })
     });
 
+    router.post("/:id/reviews", (req, res) => {
+      resourceQueries.addNewComment()
+        .then(() => {
+
+        })
+        .catch(err => {
+          res.json({ error: err.message})
+        })
+
+
+    });
+
 
 
     router.post("/", (req, res) => {
 
-      let comment = req.body.text
+      let comment = req.body.text;
+      console.log("TEST", comment)
+      //addNewComment(user_id, resource_id, comment)
+
       res.send(comment);
 
     });
