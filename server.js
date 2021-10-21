@@ -43,8 +43,6 @@ app.use(
 
 // Note: Feel free to replace the example routes below with your own
 
-const homeRoutes = require("./routes/home-page");
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", authRoutes);

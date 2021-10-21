@@ -123,7 +123,7 @@ module.exports = (db) => {
 
 
 
-  router.post("/", (req, res) => {
+  /*router.post("/comment", (req, res) => {
 
     let comment = req.body.text;
     console.log("TEST", comment);
@@ -133,7 +133,7 @@ module.exports = (db) => {
 
   });
 
-  router.get("/", (req, res) => {
+  router.get("/comment", (req, res) => {
 
     //resourceQueries.getURL()
     //  .then((urls) => {
@@ -142,7 +142,7 @@ module.exports = (db) => {
 
     res.render("resource-wall.ejs");
 
-  });
+  });*/
 
 
   return router;
