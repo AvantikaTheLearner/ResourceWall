@@ -1,6 +1,6 @@
 /* requires*/
 const {
-  getUserEmail,
+  getUserByEmail,
   addNewUser,
   modifyUserProfile,
 } = require("../queries/auth-queries");
@@ -18,7 +18,7 @@ const loginUser = async (req, res) => {
   }
 
   // check if email is not exist;
-  const results = await db.query(getUserEmail, [email]);
+  const results = await db.query(getUserByEmail, [email]);
   if (!results.rows.length) {
     return res.status(404).send("Email is not found!!");
   }
@@ -47,7 +47,7 @@ const createUser = async (req, res) => {
   }
 
   // check if email is already exist
-  const resualts = await db.query(getUserEmail, [email]);
+  const resualts = await db.query(getUserByEmail, [email]);
   if (resualts.rows.length > 0) {
     return res.status(400).send("You already has an account!!");
   }
@@ -71,20 +71,30 @@ const createUser = async (req, res) => {
 };
 
 const updateProfile = async (req, res) => {
-  const userId = req.session.userId;
-  // const resualts = await db.query(getUserEmail, [email], (error, resualt) => {
+  const user = req.currentUser;
+  const email = user.email;
 
-  //   const userDb = resualt.rows[0].id;
-  // });
-  //const authHeader = req.headers.authorization;
-  const { name, email, password } = req.body;
-  const updateProfileResults = await db.query(modifyUserProfile, [
-    name,
-    email,
-    password,
-  ]);
-  if (updateProfileResults) {
-    res.send("updating was success!");
+  const getUser = await db.query(getUserByEmail, [email]);
+  if (!getUser) {
+    return res.status(404).send("there is a problem with query from db!!");
   }
+  const newName = req.body.name;
+  const newEmail = req.body.email;
+  const newPassword = req.body.password;
+  console.log({
+    newName: newName,
+    newEmail: newEmail,
+    newPassword: newPassword,
+  });
+  // const updateUserInfo = await db.query(modifyUserProfile, [
+  //   newName,
+  //   newEmail,
+  //   newPassword,
+  // ]);
+
+  // const updateProfileResults = await
+  // if (updateProfileResults) {
+  //   res.send("updating was success!");
+  // }
 };
 module.exports = { loginUser, createUser, updateProfile };
