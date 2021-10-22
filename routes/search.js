@@ -3,13 +3,13 @@ const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 
 module.exports = (db) => {
-
-  const searchResourceByTitle = function(userId, title) {
+  const searchResourceByTitle = function (userId, title) {
     let query = `SELECT resources.image, resources.url, resources.title, categories.category_name FROM resources
     JOIN categories ON categories.id = category_id
     WHERE resources.user_id = $1 AND resources.title = $2`;
 
-    return db.query(query, [userId, title])
+    return db
+      .query(query, [userId, title])
       .then((result) => {
         return result.rows;
       })
@@ -28,9 +28,9 @@ module.exports = (db) => {
       email: user.email,
       userId: user.id,
     };
+
     searchResourceByTitle(userId, title).then((rows) => {
       templateVars["rows"] = rows[0];
-      console.log("templateVars", templateVars);
       if (req.currentUser) {
         res.render("search", templateVars);
       } else {

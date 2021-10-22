@@ -37,6 +37,8 @@ app.use(
   })
 );
 app.use(express.static("public"));
+
+//express-sessio middleware
 const sessionName = "ResourcesWallSession";
 app.use(
   session({
@@ -49,10 +51,7 @@ app.use(
   })
 );
 
-// Note: Feel free to replace the example routes below with your own
-
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/", authRoutes);
 app.use("/api/users", usersRoutes(db));
 app.use("/resources", resourcesRoutes(db));
@@ -60,7 +59,6 @@ app.use("/reviews", reviewsRoutes());
 app.use("/search", searchResources(db));
 app.use("/myResources", loadMyResources(db));
 
-//ToDO
 //app.use("/creat-new-resource", newresourceroute());
 module.exports = sessionName;
 app.listen(PORT, () => {
