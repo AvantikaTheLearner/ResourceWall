@@ -36,7 +36,7 @@ $(document).ready(function() {
     const $resourceObj = $(`
 
 
-    <a href="/resources/1">
+    <a href="/resources/${resourceObj.id}">
     <div>
       <div class="imageClass" style= "border: 1px solid black ; padding: 20px">
             <img src="${resourceObj.image_url}" width="100" height="100">

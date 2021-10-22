@@ -15,7 +15,7 @@ module.exports = (db) => {
   });
 
   router.get("/resources", (req, res) => {
-    let query = `SELECT resources.url, resources.title, categories.category_name FROM resources
+    let query = `SELECT resources.id, resources.url, resources.title, categories.category_name FROM resources
     JOIN categories ON categories.id = category_id`;
     db.query(query)
       .then((data) => {
