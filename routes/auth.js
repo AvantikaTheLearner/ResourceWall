@@ -58,9 +58,14 @@ router.post("/sign-up", createUser);
 
 router.post("/update-profile", checkAuth, updateProfile);
 
-router.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/login");
+router.post("/logout", checkAuth, (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.send("The cookie can not be removed!!");
+    }
+    req.end();
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;
