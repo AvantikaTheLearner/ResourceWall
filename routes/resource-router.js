@@ -14,6 +14,9 @@ module.exports = () => {
       });
   });
 
+  router.get("/:id/detail", checkAuth, (req, res) => {
+    res.render("resource-wall")
+  });
 
 
   router.get("/:id/reviews", (req, res) => {

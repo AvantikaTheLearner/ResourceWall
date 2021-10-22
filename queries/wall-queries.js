@@ -16,19 +16,20 @@ const getURLById = (id) => {
     });
 };
 
-const getReviews = () => {
-  return db.query('SELECT * FROM reviews')
+const getReviews = (resource_id) => {
+  return db.query('SELECT * FROM reviews WHERE resource_id = $1', [parseInt(resource_id)])
     .then((response) => {
       return response.rows;
     });
 
 };
 
-const addNewComment  = (user_id, resource_id, comment) => {
+const addNewComment  = (user_id, resource_id, comment, rating) => {
+
   return db.query(`INSERT INTO
-  reviews (user_id, resource_id, comment)
-  VALUES ($1, $2, $3)
-  `, [user_id, resource_id, comment])
+  reviews (user_id, resource_id, comment, rating)
+  VALUES ($1, $2, $3, $4)
+  `, [user_id, resource_id, comment, rating])
     .then((response) => {
       return response.rows;
     });
