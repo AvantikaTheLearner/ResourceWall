@@ -1,16 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const resourceQueries = require("../queries/wall-queries");
+const checkAuth = require("../middlewares/check-auth");
 
 module.exports = () => {
+  //reviews
 
-  router.get("/:id", (req, res) => {
-    resourceQueries.getURLById(req.params.id)
+  router.get("/:id", checkAuth, (req, res) => {
+    const userId = req.currentUser.id;
+    resourceQueries.getURLById(userId)
       .then((url) => {
         res.json(url);
       });
   });
 
+  router.get("/:id/detail", checkAuth, (req, res) => {
+    res.render("resource-wall")
+  });
 
   router.get("/:id/reviews", (req, res) => {
     resourceQueries.getReviews()
@@ -20,9 +26,12 @@ module.exports = () => {
       .catch(err => {
         res.json({ error: err.message});
       });
+
+    const userId = req.currentUser.id;
+    let comment = req.body.text;
   });
 
-  router.post("/:id/reviews", (req, res) => {
+  router.post("/:id/reviews",  (req, res) => {
     resourceQueries.addNewComment()
       .then(() => {
 
@@ -36,22 +45,17 @@ module.exports = () => {
 
 
 
-  router.post("/", (req, res) => {
-
+  router.post("/", checkAuth, (req, res) => {
+    const userId = req.currentUser.id;
     let comment = req.body.text;
-    console.log("TEST", comment);
-    //addNewComment(user_id, resource_id, comment)
 
-    res.send(comment);
+    res.redirect("/reviews");
 
   });
 
-  router.get("/", (req, res) => {
+  router.get("/", checkAuth, (req, res) => {
+    const userId = req.currentUser.id;
 
-    //resourceQueries.getURL()
-    //  .then((urls) => {
-    //    res.json(urls);
-    //  });
 
     res.render("resource-wall.ejs");
 
