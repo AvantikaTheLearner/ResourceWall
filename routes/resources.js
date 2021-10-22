@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
+const resourceQueries = require("../queries/wall-queries");
 
 module.exports = (db) => {
   router.get("/", checkAuth, (req, res) => {
@@ -14,12 +15,11 @@ module.exports = (db) => {
   });
 
   router.get("/resources", (req, res) => {
-    let query = `SELECT resources.url, resources.title, categories.category_name FROM resources
+    let query = `SELECT resources.id, resources.url, resources.title, categories.category_name FROM resources
     JOIN categories ON categories.id = category_id`;
     db.query(query)
       .then((data) => {
         const resources = data.rows;
-        console.log(resources);
         res.json({ resources });
       })
       .catch((err) => {
@@ -63,6 +63,35 @@ module.exports = (db) => {
     createResource(userId, category, url, title, description);
     res.redirect("/resources");
   });
+
+
+  router.get("/:id", checkAuth, async (req, res) => {
+    const userId = req.currentUser.id;
+    const reviews = await resourceQueries.getReviews(req.params.id)
+    console.log(reviews)
+    const templateVars = {
+      id: req.params.id,
+      reviews,
+    }
+
+    res.render("resource-wall", templateVars)
+  });
+
+  router.post("/:id/reviews", checkAuth, (req, res) => {
+
+    const userId = req.currentUser.id;
+
+    resourceQueries.addNewComment(userId, req.params.id, req.body.content, parseInt(req.body.rate))
+    .then((result) => {
+      res.json({})
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+
+
+  })
+
 
   return router;
 };
