@@ -37,7 +37,7 @@
   <nav id="auth-button">
     <%if (userId){ %>
     <form method="POST" action="/logout" id="logout">
-      <p>Logged In As: <%= name %>!</p>
+      <p id="user-">Logged In As: <%= name %>!</p>
       <input type="submit" class="btn btn-outline-danger" value="Logout" />
     </form>
     <% } else { %>
