@@ -28,7 +28,6 @@ module.exports = (db) => {
     };
     searchAllResourcesByID(userId).then((rows) => {
       templateVars["rows"] = rows;
-      console.log("templateVars", templateVars);
       if (req.currentUser) {
         res.render("myResource", templateVars);
       } else {
