@@ -5,7 +5,7 @@ const checkAuth = require("../middlewares/check-auth");
 module.exports = (db) => {
 
   const searchResourceByTitle = function(userId, title) {
-    let query = `SELECT resources.url, resources.title, categories.category_name FROM resources
+    let query = `SELECT resources.image, resources.url, resources.title, categories.category_name FROM resources
     JOIN categories ON categories.id = category_id
     WHERE resources.user_id = $1 AND resources.title = $2`;
 
