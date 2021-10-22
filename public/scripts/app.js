@@ -33,7 +33,8 @@ $(document).ready(function() {
 
   //this function creates a new tweet
   const createResourceElement = function(resourceObj) {
-    const $resourceObj = $(`<div class="imageClass" style= "border: 1px solid black ; padding: 20px">
+    const $resourceObj = $(`<a href="/resources/${resourceObj.id}">
+    <div class="imageClass" style= "border: 1px solid black ; padding: 20px">
           <img src="${resourceObj.image}" width="100" height="100">
           <p><br/></p>
           <p><b>TITLE:</b> ${resourceObj.title}</p>
@@ -44,7 +45,7 @@ $(document).ready(function() {
           </form>
           <button class="rateButton" type="submit">Rate</button>
           <button class="commentButton" type="submit">Comment</button>
-        </div>`);
+        </div></a>`);
 
     return $resourceObj;
   };
