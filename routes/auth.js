@@ -5,37 +5,20 @@ const checkAuth = require("../middlewares/check-auth");
 const sessionName = require("../server");
 //get index page
 router.get("/", checkAuth, (req, res) => {
-  const user = req.currentUser;
-  const templateVars = {
-    name: user.name,
-    email: user.email,
-    userId: user.id,
-  };
-  res.render("index", templateVars);
+  res.redirect("/resources");
   return;
 });
 
 //get home page
 router.get("/home", checkAuth, (req, res) => {
-  const user = req.currentUser;
-  const templateVars = {
-    name: user.name,
-    email: user.email,
-    userId: user.id,
-  };
-  res.render("index", templateVars);
+  res.redirect("/resources");
   return;
 });
 
 //get login page
 router.get("/login", (req, res) => {
-  // if (req.session) {
-  //   req.session.cookie.maxAge = 0;
-  //   return res.render("login");
-  // }
   res.render("login");
   return;
-  //console.log("reqSession:", req.session);
 });
 
 //get sign-up page
@@ -71,7 +54,6 @@ router.post("/logout", checkAuth, (req, res) => {
     res.clearCookie(sessionName);
     res.redirect("/login");
   });
-  //console.log("reqSession:", req.session);
 });
 
 module.exports = router;
