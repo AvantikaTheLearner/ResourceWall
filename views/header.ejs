@@ -14,8 +14,12 @@
     <a class="nav-link p-2 active" aria-current="page" href="/resources"> Home </a>
   </nav>
 
+  <nav id="myResources">
+    <a class="nav-link p-2 active" aria-current="page" href="/myResources"> My Resources </a>
+  </nav>
+
   <nav class="navbar" id="search">
-    <form class="form-inline" action="/search" method="POST">
+    <form class="form-inline" action="/search" method="GET">
       <input
         id="search-box"
         class="form-control mr-sm-2"
@@ -33,6 +37,7 @@
   <nav id="auth-button">
     <%if (userId){ %>
     <form method="POST" action="/logout" id="logout">
+      <p>Logged In As: <%= name %>!</p>
       <input type="submit" class="btn btn-outline-danger" value="Logout" />
     </form>
     <% } else { %>

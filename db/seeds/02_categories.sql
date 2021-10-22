@@ -4,7 +4,7 @@ VALUES
 ('Programming'),
 ('Language'),
 ('Science'),
-(' Data Science'),
+('Data Science'),
 ('Art'),
 ('Health'),
 ('Medical'),

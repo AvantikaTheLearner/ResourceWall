@@ -2,7 +2,7 @@
 
 INSERT INTO resources (user_id, category_id, image, url,  title, description)
 VALUES
-(15, 1,pg_read_binary_file('/public/images/reources-images/PostgreSQL.jpg'),'https://til.cybertec-postgresql.com/post/2019-09-02-Postgres-Constraint-Naming-Convention', 'Postgres Constraint Naming Convention', 'message'),
+(15, 1,'/images/reources-images/PostgreSQL.jpg','https://til.cybertec-postgresql.com/post/2019-09-02-Postgres-Constraint-Naming-Convention', 'Postgres Constraint Naming Convention', 'message'),
 (15, 2,"ResourceWall/public/images/reources-images/french" ,'https://newyouth.ca/en/resources/where-can-i-learn-french-ontario', 'learn french in ontario', 'message'),
 (15, 3, "ResourceWall/public/images/reources-images/newton" ,'https://www.britannica.com/science/Newtons-laws-of-motion', 'Newtons laws of motion', 'message'),
 (15, 4, "ResourceWall/public/images/reources-images/2_data-science",'https://www.dataquest.io/blog/learn-data-science/', 'learn data science', 'message'),
