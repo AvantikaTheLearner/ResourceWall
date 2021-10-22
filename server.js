@@ -37,10 +37,13 @@ app.use(
   })
 );
 app.use(express.static("public"));
+const sessionName = "ResourcesWallSession";
 app.use(
   session({
+    name: sessionName,
     secret: "ResourceWallMidTermProject",
-    resave: true,
+    sameSite: true,
+    resave: false,
     saveUninitialized: true,
     cookie: { secure: false, maxAge: null, httpOnly: true },
   })
@@ -59,7 +62,7 @@ app.use("/myResources", loadMyResources(db));
 
 //ToDO
 //app.use("/creat-new-resource", newresourceroute());
-
+module.exports = sessionName;
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
