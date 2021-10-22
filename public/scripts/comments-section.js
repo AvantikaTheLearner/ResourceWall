@@ -3,20 +3,19 @@ $(document).ready(function() {
 
   const $commentSubmit = $(".comment-submit");
 
-  $commentSubmit.on("submit", function (event) {
+  $commentSubmit.on("click", function (event) {
     event.preventDefault();
-    const $formVal = $("#comment-text").val();
-
-    const serial = $commentSubmit.serialize();
-    $("#comment-text").val("");
-
-    $('#tweets-container').prepend(serial);
-
+    const content = $("#comment-text").val()
+    const rate = $("input[name='rate']:checked").val()
+    const resourceId = $("main").data().id;
+    $.post(`/resources/${resourceId}/reviews`, {content, rate}, function(res){
+      window.location.reload();
+    })
   });
 
-
-
-
+  const serial = $commentSubmit.serialize();
+  $("#comment-text").val("");
+  $('#comment-container').prepend(serial);
 
 
 });

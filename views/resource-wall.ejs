@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <%- include('./head'); %>
+
+<head>
 
 
-  <!--CDN for AJAX and JQUERY -->
+    <!--CDN for AJAX and JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+      integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!--External JS-->
+    <!--External JS-->
 
     <script type="text/javascript" src="/scripts/like-button.js"></script>
 
     <script type="text/javascript" src="/scripts/comments-section.js"></script>
 
-  </head>
-   <body>
-     <h1>My Resources Page</h1>
+</head>
 
-      <main>
-         <!--Comment-->
-        <form action="/reviews" method="POST">
+<body>
+  <h1>My Resources Page</h1>
 
-          <input type="textarea" name="text" id="comment-text">
-          <button type="submit" class="comment-submit">Submit</button>
 
-        </form>
-
-         <!--Like button-->
-        <button id="like-button">
-          Like
-          <output id="like-counter" class="counter-num">
-            0
-          </output>
-        </button>
-
-        <!--Ratings bar-->
+  <main data-id = "<%= id %>">
+    <!--Comment-->
     <div>
-        <input type="radio" name="rate" value="1">
-        <input type="radio" name="rate" value="2">
-        <input type="radio" name="rate" value="3">
-        <input type="radio" name="rate" value="4">
-        <input type="radio" name="rate" value="5">
+
+      <input type="textarea" name="text" id="comment-text">
+      <button type="submit" class="comment-submit">Submit</button>
+
+    </div>
+
+    <!--Like button-->
+    <button id="like-button">
+      Like
+      <output id="like-counter" class="counter-num">
+        0
+      </output>
+    </button>
+
+    <!--Ratings bar-->
+    <div>
+      <input type="radio" name="rate" value="1">
+      <input type="radio" name="rate" value="2">
+      <input type="radio" name="rate" value="3">
+      <input type="radio" name="rate" value="4">
+      <input type="radio" name="rate" value="5">
     </div>
 
     <h4>Comment section</h4>
-    <section id="comments-container"> </section>
+    <section id="comments-container">
 
-      </main>
+    </section>
 
-   </body>
+  </main>
+
+  <div>
+    <% for (item of reviews) { %>
+
+    <%= item.comment %>
+    <% } %>
+  </div>
+</body>
+
 </html>

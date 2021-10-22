@@ -33,16 +33,27 @@ $(document).ready(function() {
 
   //this function creates a new tweet
   const createResourceElement = function(resourceObj) {
-    const $resourceObj = $(`<div class="imageClass" style= "border: 1px solid black ; padding: 20px">
-          <img src="${resourceObj.image_url}" width="100" height="100">
-          <p><br/></p>
-          <p><b>TITLE:</b> ${resourceObj.title}</p>
-          <p><b>CATEGORY:</b> ${resourceObj.category_name}</p>
-          <a href="${resourceObj.url}">${resourceObj.url}</a>
-          <button class="likeButton" type="submit">Like</button>
-          <button class="rateButton" type="submit">Rate</button>
-          <button class="commentButton" type="submit">Comment</button>
-        </div>`);
+    const $resourceObj = $(`
+
+
+    <a href="/resources/1">
+    <div>
+      <div class="imageClass" style= "border: 1px solid black ; padding: 20px">
+            <img src="${resourceObj.image_url}" width="100" height="100">
+            <p><br/></p>
+            <p><b>TITLE:</b> ${resourceObj.title}</p>
+            <p><b>CATEGORY:</b> ${resourceObj.category_name}</p>
+            <a href="${resourceObj.url}">${resourceObj.url}</a>
+            <button class="likeButton" type="submit">Like</button>
+            <button class="rateButton" type="submit">Rate</button>
+            <button class="commentButton" type="submit">Comment</button>
+          </div>
+      </div>
+    </a>
+
+
+
+        `);
 
     return $resourceObj;
   };
