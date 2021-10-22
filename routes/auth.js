@@ -4,15 +4,26 @@ const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 
 //get index page
-router.get("/", (req, res) => {
-  const templateVars = {user: req.session.currentUser};
+router.get("/", checkAuth, (req, res) => {
+  const user = req.currentUser;
+  const templateVars = {
+    name: user.name,
+    email: user.email,
+    userId: user.id,
+  };
   res.render("index", templateVars);
   return;
 });
 
 //get home page
-router.get("/home", (req, res) => {
-  res.render("index");
+router.get("/home", checkAuth, (req, res) => {
+  const user = req.currentUser;
+  const templateVars = {
+    name: user.name,
+    email: user.email,
+    userId: user.id,
+  };
+  res.render("index", templateVars);
   return;
 });
 
@@ -47,9 +58,14 @@ router.post("/sign-up", createUser);
 
 router.post("/update-profile", checkAuth, updateProfile);
 
-router.post("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/login");
+router.post("/logout", checkAuth, (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.send("The cookie can not be removed!!");
+    }
+    req.end();
+    res.redirect("/login");
+  });
 });
 
 module.exports = router;

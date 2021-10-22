@@ -40,6 +40,7 @@ const loginUser = async (req, res) => {
 
 /*Add new user for db*/
 const createUser = async (req, res) => {
+  console.log("req-body", req.body);
   const { name, email, password } = req.body;
   // check all required fields
   if (!name || !email || !password) {
@@ -47,14 +48,15 @@ const createUser = async (req, res) => {
   }
 
   // check if email is already exist
-  const resualts = await db.query(getUserByEmail, [email]);
-  if (resualts.rows.length > 0) {
+  const results = await db.query(getUserByEmail, [email]);
+  if (results.rows.length > 0) {
     return res.status(400).send("You already has an account!!");
   }
 
   //creat new account
   //hash the password before saving indb
   const hashPassword = await bcrypt.hash(password, salt);
+  console.log("hashpassword", hashPassword);
   //insert the new user info in db
   db.query(addNewUser, [name, email, hashPassword], (error, resualt) => {
     if (error) {
@@ -73,7 +75,7 @@ const createUser = async (req, res) => {
 const updateProfile = async (req, res) => {
   const user = req.currentUser;
   const email = user.email;
-
+  const userId = user.id;
   const getUser = await db.query(getUserByEmail, [email]);
   if (!getUser) {
     return res.status(404).send("there is a problem with query from db!!");
@@ -86,15 +88,15 @@ const updateProfile = async (req, res) => {
     newEmail: newEmail,
     newPassword: newPassword,
   });
-  // const updateUserInfo = await db.query(modifyUserProfile, [
-  //   newName,
-  //   newEmail,
-  //   newPassword,
-  // ]);
-
-  // const updateProfileResults = await
-  // if (updateProfileResults) {
-  //   res.send("updating was success!");
-  // }
+  const updateUserInfo = await db.query(modifyUserProfile, [
+    userId,
+    newName,
+    newEmail,
+    newPassword,
+  ]);
+  if (!updateUserInfo) {
+    return res.send("updating was not success!");
+  }
+  res.redirect("/resources");
 };
 module.exports = { loginUser, createUser, updateProfile };

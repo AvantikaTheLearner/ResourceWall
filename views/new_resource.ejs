@@ -12,7 +12,7 @@
 
   <body>
 
-    <%#- include('header') %>
+    <%- include('header') %>
 
     <main style="margin: 1em;">
       <h3>Add New Resource</h3>
@@ -25,7 +25,17 @@
           <label for="description">Description :</label>
           <input class="form-control" type="description" name="description" style="width: 300px; margin: 1em">
           <label for="category">Category :</label>
-          <input class="form-control" type="category" name="category" style="width: 300px; margin: 1em">
+          <select name="category">
+          <option value="1">Programming</option>
+          <option value="2">Language</option>
+          <option value="3">Science</option>
+          <option value="4" selected>Data Science</option>
+          <option value="5">Art</option>
+          <option value="6">Health</option>
+          <option value="7">Medical</option>
+          <option value="8">News</option>
+
+          </select>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
