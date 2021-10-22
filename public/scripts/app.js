@@ -43,8 +43,6 @@ $(document).ready(function() {
           <form class="likeButton" action="/resources/${resourceObj.id}" method="POST">
           <button class="likeButton" type="submit">Like</button>
           </form>
-          <button class="rateButton" type="submit">Rate</button>
-          <button class="commentButton" type="submit">Comment</button>
         </div></a>`);
 
     return $resourceObj;
