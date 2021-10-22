@@ -1,5 +1,5 @@
 // Client facing scripts here
-$(document).ready(function() {
+$(document).ready(function () {
   console.log("loaded");
 
   //this function submits an ajax request to load all the tweets from Json data
@@ -21,9 +21,8 @@ $(document).ready(function() {
   loadResources();
 
   //this function helps in rendering the tweets while submitting ajax request
-  const renderResources = function(resources) {
-
-    const $resourcesContainer = $('#resources-container');
+  const renderResources = function (resources) {
+    const $resourcesContainer = $("#resources-container");
     //$resourcesContainer.empty();
     for (const resource of resources) {
       const $resource = createResourceElement(resource);
@@ -32,7 +31,7 @@ $(document).ready(function() {
   };
 
   //this function creates a new tweet
-  const createResourceElement = function(resourceObj) {
+  const createResourceElement = function (resourceObj) {
     const $resourceObj = $(`<a href="/resources/${resourceObj.id}">
     <div class="imageClass" style= "border: 1px solid black ; padding: 20px">
           <img src="${resourceObj.image}" width="100" height="100">
@@ -41,11 +40,10 @@ $(document).ready(function() {
           <p><b>CATEGORY:</b> ${resourceObj.category_name}</p>
           <a href="${resourceObj.url}">${resourceObj.url}</a>
           <form class="likeButton" action="/resources/${resourceObj.id}" method="POST">
-          <button class="likeButton" type="submit">Like</button>
+          <button class="likeButton" type="submit"> Like </button>
           </form>
         </div></a>`);
 
     return $resourceObj;
   };
-
 });
