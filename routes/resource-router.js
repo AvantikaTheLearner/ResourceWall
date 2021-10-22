@@ -18,6 +18,7 @@ module.exports = () => {
     res.render("resource-wall")
   });
 
+
   router.get("/:id/reviews", (req, res) => {
     resourceQueries.getReviews()
       .then((url) => {
