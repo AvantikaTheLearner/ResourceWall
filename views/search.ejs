@@ -9,14 +9,14 @@
       <section id="search-resources">
         <h3>Results for searched resource:</h3>
         <div class="imageClass" style= "border: 1px solid black ; padding: 20px">
-          <img src="<%= rows.image %>" width="100" height="100">
+
           <p><br/></p>
+          <img src="<%= rows.image %>" width="100" height="100">
           <p><b>TITLE:</b><%= rows.title %></p>
           <p><b>CATEGORY:</b><%= rows.category_name %></p>
           <a href="<%= rows.url %>"><%= rows.url %></a>
           <button class="likeButton" type="submit">Like</button>
-          <button class="rateButton" type="submit">Rate</button>
-          <button class="commentButton" type="submit">Comment</button>
+
         </div>
       </section>
     </main>
