@@ -14,7 +14,7 @@ module.exports = (db) => {
   });
 
   router.get("/resources", (req, res) => {
-    let query = `SELECT resources.url, resources.title, categories.category_name FROM resources
+    let query = `SELECT resources.id, resources.image, resources.url, resources.title, categories.category_name FROM resources
     JOIN categories ON categories.id = category_id`;
     db.query(query)
       .then((data) => {
@@ -29,8 +29,8 @@ module.exports = (db) => {
   });
 
   const createResource = function(userId, category, url, title, description) {
-    let query = `INSERT INTO resources (user_id, category_id, url, title, description)
-    VALUES ($1, $2, $3, $4, $5)`;
+    let query = `INSERT INTO resources (user_id, category_id, image, url, title, description)
+    VALUES ($1, $2, '/images/resources-images/google-1762248_960_720.png', $3, $4, $5)`;
 
     db.query(query, [userId, category, url, title, description])
       .then((result) => {
@@ -62,6 +62,29 @@ module.exports = (db) => {
 
     createResource(userId, category, url, title, description);
     res.redirect("/resources");
+  });
+
+  //post request to change the user id for all liked resources already seeded in resources table
+  const updateUserIdForResource = function(id, userId) {
+    let query = `UPDATE resources
+    SET user_id = $2
+    WHERE id = $1`;
+
+    db.query(query, [id, userId])
+      .then((result) => {
+        return result.rows;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  router.post("/:id", checkAuth, (req, res) => {
+    const id = req.params.id;
+    const userId = req.currentUser.id;
+
+    updateUserIdForResource(id, userId);
+    res.redirect("/");
   });
 
   return router;
