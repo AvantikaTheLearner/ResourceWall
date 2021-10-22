@@ -40,9 +40,15 @@ $(document).ready(function() {
           <p><b>TITLE:</b> ${resourceObj.title}</p>
           <p><b>CATEGORY:</b> ${resourceObj.category_name}</p>
           <a href="${resourceObj.url}">${resourceObj.url}</a>
+
           <form class="likeButton" action="/resources/${resourceObj.id}" method="POST">
-          <button class="likeButton" type="submit">Like</button>
+          <button class="likeButton" type="submit">Like
+          <output id="like-counter" class="counter-num">
+            0
+          </output>
+          </button>
           </form>
+
         </div></a>`);
 
     return $resourceObj;

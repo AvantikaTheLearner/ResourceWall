@@ -56,9 +56,12 @@ module.exports = () => {
 
   router.get("/", checkAuth, (req, res) => {
     const userId = req.currentUser.id;
+    const templateVars = {
+      userId,
 
+    }
 
-    res.render("resource-wall.ejs");
+    res.render("resource-wall.ejs", templateVars);
 
   });
 

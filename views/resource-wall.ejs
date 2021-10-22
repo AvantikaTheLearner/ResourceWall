@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-
-
+  <%- include('./head'); %>
     <!--CDN for AJAX and JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -18,13 +17,32 @@
 
     <script type="text/javascript" src="/scripts/comments-section.js"></script>
 
+    <link rel="stylesheet" href="../public/styles/reviews.css">
+
 </head>
 
 <body>
-  <h1>Resource Review</h1>
+  <%- include('./header'); %>
+
+  <div id="title">
+    <h1 >Resource Review</h1>
+  </div>
 
 
   <main data-id = "<%= id %>">
+
+     <!--Ratings bar-->
+     <div>
+      <input type="radio" name="rate" value="1">
+      <input type="radio" name="rate" value="2">
+      <input type="radio" name="rate" value="3">
+      <input type="radio" name="rate" value="4">
+      <input type="radio" name="rate" value="5">
+    </div>
+
+    <% if (reviews) { %>
+      <%= reviews.rate %>
+    <% } %>
     <!--Comment-->
     <div>
 
@@ -33,36 +51,30 @@
 
     </div>
 
-    <!--Like button-->
+    <!--Like button
     <button id="like-button">
       Like
       <output id="like-counter" class="counter-num">
         0
       </output>
     </button>
+    -->
 
-    <!--Ratings bar-->
-    <div>
-      <input type="radio" name="rate" value="1">
-      <input type="radio" name="rate" value="2">
-      <input type="radio" name="rate" value="3">
-      <input type="radio" name="rate" value="4">
-      <input type="radio" name="rate" value="5">
-    </div>
 
     <h4>Comment section</h4>
-    <section id="comments-container">
+    <section class="comments-container">
+      <div class="p-3">
+        <% for (item of reviews) { %>
+
+        <%= item.comment %>
+        <% } %>
+      </div>
 
     </section>
 
   </main>
 
-  <div>
-    <% for (item of reviews) { %>
 
-    <%= item.comment %>
-    <% } %>
-  </div>
 </body>
 
 </html>

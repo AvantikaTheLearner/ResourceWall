@@ -89,12 +89,17 @@ module.exports = (db) => {
 
 
   router.get("/:id", checkAuth, async(req, res) => {
+
+    const user = req.currentUser;
     const userId = req.currentUser.id;
     const reviews = await resourceQueries.getReviews(req.params.id);
-    console.log(reviews);
+
     const templateVars = {
       id: req.params.id,
       reviews,
+      userId,
+      name: user.name,
+      email: user.email,
     };
 
     res.render("resource-wall", templateVars);
