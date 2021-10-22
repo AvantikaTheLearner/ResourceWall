@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const resourceQueries = require("../queries/wall-queries");
+const checkAuth = require("../middlewares/check-auth");
 
 module.exports = () => {
 
@@ -36,13 +37,10 @@ module.exports = () => {
 
 
 
-  router.post("/", (req, res) => {
-
+  router.post("/", checkAuth, (req, res) => {
+    const userId = req.currentUser.id;
     let comment = req.body.text;
-    console.log("TEST", comment);
-    //addNewComment(user_id, resource_id, comment)
 
-    res.send(comment);
 
   });
 

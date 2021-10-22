@@ -1,6 +1,22 @@
 $(document).ready(function() {
 
-const $commentSection = $("#comments-container")
-  $(this).text("Hello")
+
+  const $commentSubmit = $(".comment-submit");
+
+  $commentSubmit.on("submit", function (event) {
+    event.preventDefault();
+    const $formVal = $("#comment-text").val();
+
+    const serial = $commentSubmit.serialize();
+    $("#comment-text").val("");
+
+    $('#tweets-container').prepend(serial);
+
+  });
+
+
+
+
+
 
 });
