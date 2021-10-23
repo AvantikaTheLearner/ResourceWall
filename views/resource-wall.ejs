@@ -40,9 +40,7 @@
       <input type="radio" name="rate" value="5">
     </div>
 
-    <% if (reviews) { %>
-      <%= reviews.rate %>
-    <% } %>
+
     <!--Comment-->
     <div>
 
@@ -64,9 +62,17 @@
     <h4>Comment section</h4>
     <section class="comments-container">
       <div class="p-3">
+
         <% for (item of reviews) { %>
 
+        <h6>Comment By: <%= name %></h6>
+
+
         <%= item.comment %>
+
+        <p><h6>Rating:</h6>
+          <%= item.rating %>
+        </p>
         <% } %>
       </div>
 

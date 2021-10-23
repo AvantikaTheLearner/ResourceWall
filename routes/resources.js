@@ -100,7 +100,7 @@ module.exports = (db) => {
     const user = req.currentUser;
     const userId = req.currentUser.id;
     const reviews = await resourceQueries.getReviews(req.params.id);
-
+    console.log("reviews", reviews);
     const templateVars = {
       id: req.params.id,
       reviews,
@@ -113,7 +113,6 @@ module.exports = (db) => {
   });
 
   router.post("/:id/reviews", checkAuth, (req, res) => {
-
     const userId = req.currentUser.id;
 
     resourceQueries.addNewComment(userId, req.params.id, req.body.content, parseInt(req.body.rate))
