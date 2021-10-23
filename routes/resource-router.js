@@ -58,7 +58,6 @@ module.exports = () => {
     const userId = req.currentUser.id;
     const templateVars = {
       userId,
-
     }
 
     res.render("resource-wall.ejs", templateVars);
