@@ -4,6 +4,20 @@ const checkAuth = require("../middlewares/check-auth");
 const resourceQueries = require("../queries/wall-queries");
 
 module.exports = (db) => {
+
+  const getAllResources = function() {
+    let query = `SELECT resources.id, resources.image, resources.url, resources.title, categories.category_name FROM resources
+    JOIN categories ON categories.id = category_id`;
+
+    return db.query(query)
+      .then((data) => {
+        return data.rows;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   router.get("/", checkAuth, (req, res) => {
     const user = req.currentUser;
     const templateVars = {
@@ -11,28 +25,21 @@ module.exports = (db) => {
       email: user.email,
       userId: user.id,
     };
-    res.render("index", templateVars);
-  });
-
-  router.get("/resources", (req, res) => {
-    let query = `SELECT resources.id, resources.image, resources.url, resources.title, categories.category_name FROM resources
-    JOIN categories ON categories.id = category_id`;
-    db.query(query)
-      .then((data) => {
-        const resources = data.rows;
-        res.json({ resources });
-      })
-      .catch((err) => {
-        console.log("Error on", err);
-        res.status(500).json({ error: err.message });
+    getAllResources()
+      .then((rows) => {
+        templateVars["rows"] = rows;
+        if (!req.currentUser) {
+          res.redirect("/login");
+        }
+        res.render("index", templateVars);
       });
   });
 
-  const createResource = function(userId, category, url, title, description) {
+  const createResource = function(userId, category, imageurl, url, title, description) {
     let query = `INSERT INTO resources (user_id, category_id, image, url, title, description)
-    VALUES ($1, $2, '/images/resources-images/google-1762248_960_720.png', $3, $4, $5)`;
+    VALUES ($1, $2, $3, $4, $5, $6)`;
 
-    db.query(query, [userId, category, url, title, description])
+    db.query(query, [userId, category, imageurl, url, title, description])
       .then((result) => {
         return result.rows;
       })
@@ -58,9 +65,9 @@ module.exports = (db) => {
   //Adding new resources
   router.post("/new_resource", checkAuth, (req, res) => {
     const userId = req.currentUser.id;
-    const { category, url, title, description } = req.body;
+    const { category, imageurl, url, title, description } = req.body;
 
-    createResource(userId, category, url, title, description);
+    createResource(userId, category, imageurl, url, title, description);
     res.redirect("/resources");
   });
 

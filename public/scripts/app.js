@@ -1,4 +1,5 @@
 // Client facing scripts here
+<<<<<<< HEAD
 $(document).ready(function () {
   console.log("loaded");
 
@@ -53,3 +54,5 @@ $(document).ready(function () {
     return $resourceObj;
   };
 });
+=======
+>>>>>>> master

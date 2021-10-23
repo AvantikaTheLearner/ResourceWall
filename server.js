@@ -4,7 +4,6 @@ const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
 const db = require("./lib/db.js");
-const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const resourcesRoutes = require("./routes/resources");
 const reviewsRoutes = require("./routes/resource-router");
@@ -19,12 +18,10 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-//app.use(bodyParser.urlencoded({ extended: true }));
-
 /** Middlewares */
 app.use(morgan("dev"));
 
-// using ejs templare.
+// using ejs template
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -53,7 +50,6 @@ app.use(
 
 // Mount all resource routes
 app.use("/", authRoutes);
-app.use("/api/users", usersRoutes(db));
 app.use("/resources", resourcesRoutes(db));
 app.use("/reviews", reviewsRoutes());
 app.use("/search", searchResources(db));
