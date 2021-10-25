@@ -96,19 +96,23 @@ module.exports = (db) => {
 
 
   router.get("/:id", checkAuth, async(req, res) => {
+
+    const user = req.currentUser;
     const userId = req.currentUser.id;
     const reviews = await resourceQueries.getReviews(req.params.id);
-    console.log(reviews);
+    console.log("reviews", reviews);
     const templateVars = {
       id: req.params.id,
       reviews,
+      userId,
+      name: user.name,
+      email: user.email,
     };
 
     res.render("resource-wall", templateVars);
   });
 
   router.post("/:id/reviews", checkAuth, (req, res) => {
-
     const userId = req.currentUser.id;
 
     resourceQueries.addNewComment(userId, req.params.id, req.body.content, parseInt(req.body.rate))
