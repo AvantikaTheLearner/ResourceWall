@@ -17,5 +17,4 @@ $(document).ready(function() {
   $("#comment-text").val("");
   $('#comment-container').prepend(serial);
 
-
 });
