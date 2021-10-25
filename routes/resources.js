@@ -86,11 +86,25 @@ module.exports = (db) => {
       });
   };
 
+  const insertIntoReviews = function(id, userId) {
+    let query = `INSERT INTO reviews (user_id, resource_id, rating, comment, hit_like)
+    VALUES ($2, $1, 3, 'comment', 1)`;
+
+    db.query(query, [id, userId])
+      .then((result) => {
+        return result.rows;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   router.post("/:id", checkAuth, (req, res) => {
     const id = req.params.id;
     const userId = req.currentUser.id;
 
     updateUserIdForResource(id, userId);
+    //insertIntoReviews(id, userId);
     res.redirect("/");
   });
 
